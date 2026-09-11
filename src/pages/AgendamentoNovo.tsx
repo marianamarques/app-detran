@@ -102,7 +102,7 @@ export default function AgendamentoNovo() {
       <Screen>
         {step === 1 && (
           <div className="space-y-3">
-            <p className="mb-1 px-1 text-sm font-bold text-[var(--text-primary)]">Qual serviço você precisa?</p>
+            <p className="mb-1 text-sm font-bold text-[var(--text-primary)]">Qual serviço você precisa?</p>
             {serviceOptions.map((s) => (
               <button
                 key={s.id}
@@ -122,7 +122,7 @@ export default function AgendamentoNovo() {
 
         {step === 2 && (
           <div className="space-y-3">
-            <p className="mb-1 px-1 text-sm font-bold text-[var(--text-primary)]">Escolha a unidade</p>
+            <p className="mb-1 text-sm font-bold text-[var(--text-primary)]">Escolha a unidade</p>
             {units.map((u) => (
               <button
                 key={u.id}
@@ -143,7 +143,7 @@ export default function AgendamentoNovo() {
 
         {step === 3 && (
           <div>
-            <p className="mb-3 px-1 text-sm font-bold text-[var(--text-primary)]">Escolha a data</p>
+            <p className="mb-3 text-sm font-bold text-[var(--text-primary)]">Escolha a data</p>
             <div className="mb-6 grid grid-cols-4 gap-2">
               {days.map((d) => {
                 const active = date?.toDateString() === d.toDateString();
@@ -163,7 +163,7 @@ export default function AgendamentoNovo() {
                 );
               })}
             </div>
-            <p className="mb-3 px-1 text-sm font-bold text-[var(--text-primary)]">Escolha o horário</p>
+            <p className="mb-3 text-sm font-bold text-[var(--text-primary)]">Escolha o horário</p>
             <div className="grid grid-cols-3 gap-2">
               {times.map((t) => (
                 <button
@@ -182,7 +182,7 @@ export default function AgendamentoNovo() {
 
         {step === 4 && (
           <div className="space-y-3">
-            <p className="mb-1 px-1 text-sm font-bold text-[var(--text-primary)]">Confirme os dados</p>
+            <p className="mb-1 text-sm font-bold text-[var(--text-primary)]">Confirme os dados</p>
             <div className="rounded-2xl surface-card divide-y divide-[var(--border-soft)] px-4">
               {[
                 ["Serviço", selectedService?.title],

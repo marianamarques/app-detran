@@ -43,7 +43,7 @@ export default function Boletim() {
     <div className="flex h-full flex-col">
       <TopBar title="Boletim de Ocorrência" subtitle="Registro online — Detran-GO" />
       <Screen>
-        <p className="mb-3 px-1 text-sm font-bold text-[var(--text-primary)]">O que aconteceu?</p>
+        <p className="mb-3 text-sm font-bold text-[var(--text-primary)]">O que aconteceu?</p>
         <div className="mb-5 space-y-2">
           {types.map((t) => (
             <button
@@ -63,7 +63,7 @@ export default function Boletim() {
 
         {type && (
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-            <p className="mb-2 px-1 text-sm font-bold text-[var(--text-primary)]">Descreva a ocorrência</p>
+            <p className="mb-2 text-sm font-bold text-[var(--text-primary)]">Descreva a ocorrência</p>
             <textarea
               value={desc}
               onChange={(e) => setDesc(e.target.value)}

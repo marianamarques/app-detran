@@ -34,7 +34,7 @@ export default function VeiculoDetail() {
           <DynamicIcon name="Car" size={90} className="absolute -bottom-4 -right-4 text-white/10" />
           <div className="flex items-center justify-between">
             <p className="text-[10px] font-bold uppercase tracking-widest text-white/70">CRLV Digital {vehicle.crlvYear}</p>
-            <StatusPill status={vehicle.status} />
+            <StatusPill status={vehicle.status} onDark />
           </div>
           <p className="mt-3 font-display text-xl font-bold">{vehicle.brand} {vehicle.model}</p>
           <p className="font-mono text-lg tracking-[0.2em] mt-1">{vehicle.plate}</p>
@@ -63,7 +63,7 @@ export default function VeiculoDetail() {
 
         {relatedDebits.length > 0 && (
           <div className="mb-5">
-            <p className="mb-3 px-1 text-sm font-bold text-[var(--text-primary)]">Pendências deste veículo</p>
+            <p className="mb-3 text-sm font-bold text-[var(--text-primary)]">Pendências deste veículo</p>
             <div className="space-y-2">
               {relatedDebits.map((d) => (
                 <Link key={d.id} to={`/debitos/${d.id}`}>

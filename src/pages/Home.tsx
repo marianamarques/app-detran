@@ -4,7 +4,14 @@ import { motion } from "framer-motion";
 import Screen from "../components/Screen";
 import { useApp } from "../context/AppContext";
 import { services } from "../data/mock";
-import { Card, DynamicIcon, StatusPill, currency } from "../components/ui";
+import { Avatar, Card, DynamicIcon, StatusPill, currency } from "../components/ui";
+
+function greeting() {
+  const h = new Date().getHours();
+  if (h < 12) return "Bom dia,";
+  if (h < 18) return "Boa tarde,";
+  return "Boa noite,";
+}
 
 export default function Home() {
   const { user, vehicles, debits, appointments, unreadCount } = useApp();
@@ -17,16 +24,15 @@ export default function Home() {
     <Screen padded={false} className="bg-[var(--bg)]">
       <div className="relative overflow-hidden bg-gradient-to-br from-brand-600 to-brand-800 px-5 pb-8 pt-5 safe-top">
         <div className="absolute -top-10 -right-16 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-black/10 blur-3xl" />
         <div className="relative flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 font-display font-bold text-white ring-2 ring-white/30">
-              {user.avatarInitials}
-            </div>
+          <Link to="/perfil" className="flex items-center gap-3">
+            <Avatar src={user.avatarUrl} initials={user.avatarInitials} verified size={44} />
             <div>
-              <p className="text-xs text-white/70">Boa tarde,</p>
+              <p className="text-xs text-white/70">{greeting()}</p>
               <p className="font-display font-bold text-white leading-tight">{firstName}</p>
             </div>
-          </div>
+          </Link>
           <Link
             to="/notificacoes"
             className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white/15 active:scale-90 transition-transform"
@@ -49,7 +55,7 @@ export default function Home() {
               <div className="flex items-center gap-1.5 text-white/80 text-[11px] font-semibold uppercase tracking-wide">
                 <ShieldCheck size={14} /> CNH Digital
               </div>
-              <StatusPill status={user.cnh.status} />
+              <StatusPill status={user.cnh.status} onDark />
             </div>
             <p className="mt-3 font-display text-lg font-bold text-white">{user.name}</p>
             <div className="mt-2 flex items-center justify-between text-white/80 text-xs">
@@ -64,7 +70,7 @@ export default function Home() {
         </Link>
       </div>
 
-      <div className="px-4 -mt-4 space-y-5 pb-6">
+      <div className="px-4 -mt-4 space-y-6 pb-6">
         {pendingDebits.length > 0 && (
           <Link to="/debitos">
             <Card className="flex items-center gap-3 border-amber-500/30 bg-amber-500/[0.06]">
@@ -77,13 +83,13 @@ export default function Home() {
                 </p>
                 <p className="text-xs text-[var(--text-secondary)]">Total de {currency(totalPending)} em aberto</p>
               </div>
-              <ChevronRight size={18} className="text-[var(--text-secondary)]" />
+              <ChevronRight size={18} className="shrink-0 text-[var(--text-secondary)]" />
             </Card>
           </Link>
         )}
 
         <div>
-          <div className="mb-3 flex items-center justify-between px-1">
+          <div className="mb-3 flex items-center justify-between">
             <h2 className="font-display font-bold text-[15px] text-[var(--text-primary)]">Serviços</h2>
             <Link to="/servicos" className="text-xs font-semibold text-brand-600">
               Ver todos
@@ -96,7 +102,9 @@ export default function Home() {
                   <div className={`flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br ${s.color}`}>
                     <DynamicIcon name={s.icon} size={20} className="text-white" />
                   </div>
-                  <span className="text-[11px] font-semibold leading-tight text-[var(--text-primary)]">{s.title}</span>
+                  <span className="whitespace-nowrap text-[11px] font-semibold leading-tight text-[var(--text-primary)]">
+                    {s.title}
+                  </span>
                 </motion.div>
               </Link>
             ))}
@@ -105,7 +113,7 @@ export default function Home() {
 
         {nextAppointment && (
           <div>
-            <h2 className="mb-3 px-1 font-display font-bold text-[15px] text-[var(--text-primary)]">Próximo agendamento</h2>
+            <h2 className="mb-3 font-display font-bold text-[15px] text-[var(--text-primary)]">Próximo agendamento</h2>
             <Link to="/agendamentos">
               <Card className="flex items-center gap-3">
                 <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-2xl bg-violet-500/12 text-violet-600">
@@ -116,23 +124,29 @@ export default function Home() {
                   <p className="truncate text-sm font-bold text-[var(--text-primary)]">{nextAppointment.service}</p>
                   <p className="truncate text-xs text-[var(--text-secondary)]">{nextAppointment.unit} · {nextAppointment.time}</p>
                 </div>
-                <ChevronRight size={18} className="text-[var(--text-secondary)]" />
+                <ChevronRight size={18} className="shrink-0 text-[var(--text-secondary)]" />
               </Card>
             </Link>
           </div>
         )}
 
         <div>
-          <h2 className="mb-3 px-1 font-display font-bold text-[15px] text-[var(--text-primary)]">Meus veículos</h2>
+          <h2 className="mb-3 font-display font-bold text-[15px] text-[var(--text-primary)]">Meus veículos</h2>
           <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1">
             {vehicles.map((v) => (
               <Link key={v.id} to={`/veiculos/${v.id}`} className="shrink-0 w-[210px]">
-                <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${v.gradient} p-4 text-white shadow-lg`}>
+                <motion.div
+                  whileTap={{ scale: 0.97 }}
+                  className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${v.gradient} p-4 text-white shadow-lg`}
+                >
                   <DynamicIcon name="Car" size={54} className="absolute -bottom-3 -right-3 text-white/10" />
-                  <p className="text-[10px] uppercase tracking-wide text-white/70">{v.brand}</p>
+                  <div className="flex items-start justify-between">
+                    <p className="text-[10px] uppercase tracking-wide text-white/70">{v.brand}</p>
+                    <ChevronRight size={14} className="text-white/50" />
+                  </div>
                   <p className="font-display font-bold">{v.model}</p>
                   <p className="mt-4 font-mono text-sm tracking-widest">{v.plate}</p>
-                </div>
+                </motion.div>
               </Link>
             ))}
             <Link to="/transferencia" className="shrink-0 w-[110px]">
@@ -150,7 +164,7 @@ export default function Home() {
             <p className="text-sm font-bold">Curso de reciclagem online</p>
             <p className="text-xs text-white/60">Recupere pontos com cursos parceiros</p>
           </div>
-          <ChevronRight size={16} className="text-white/60" />
+          <ChevronRight size={16} className="shrink-0 text-white/60" />
         </Card>
       </div>
     </Screen>

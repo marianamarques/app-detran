@@ -36,7 +36,7 @@ export default function Veiculos() {
                       <p className="text-[10px] uppercase tracking-wide text-white/70">{v.brand}</p>
                       <p className="font-display text-lg font-bold">{v.model}</p>
                     </div>
-                    <StatusPill status={v.status} />
+                    <StatusPill status={v.status} onDark />
                   </div>
                   <p className="mt-4 font-mono text-lg tracking-[0.2em]">{v.plate}</p>
                 </div>

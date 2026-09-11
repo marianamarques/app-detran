@@ -22,6 +22,7 @@ export default function CNH() {
   const { user } = useApp();
   const [flipped, setFlipped] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const [photoError, setPhotoError] = useState(false);
 
   const notify = (msg: string) => {
     setToast(msg);
@@ -56,9 +57,21 @@ export default function CNH() {
                 <span className="font-display text-sm font-extrabold">GO</span>
               </div>
               <div className="mt-4 flex gap-3">
-                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/30">
-                  <UserIcon size={30} className="text-white/80" />
-                </div>
+                {photoError ? (
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/30">
+                    <UserIcon size={30} className="text-white/80" />
+                  </div>
+                ) : (
+                  <img
+                    src={user.avatarUrl}
+                    alt=""
+                    onError={() => setPhotoError(true)}
+                    onLoad={(e) => {
+                      if (e.currentTarget.naturalWidth === 0) setPhotoError(true);
+                    }}
+                    className="h-16 w-16 shrink-0 rounded-xl object-cover ring-1 ring-white/30"
+                  />
+                )}
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-display text-base font-bold">{user.name}</p>
                   <p className="text-xs text-white/70">CPF {user.cpf}</p>
@@ -74,7 +87,7 @@ export default function CNH() {
                   <p className="text-[10px] text-white/60">Validade</p>
                   <p className="text-sm font-semibold">{user.cnh.validity}</p>
                 </div>
-                <StatusPill status={user.cnh.status} />
+                <StatusPill status={user.cnh.status} onDark />
               </div>
             </div>
 

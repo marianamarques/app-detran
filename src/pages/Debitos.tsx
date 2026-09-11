@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
 import Screen from "../components/Screen";
 import { useApp } from "../context/AppContext";
 import { Card, DynamicIcon, EmptyState, StatusPill, currency } from "../components/ui";
@@ -65,23 +64,25 @@ export default function Debitos() {
           {filtered.map((d, i) => (
             <motion.div key={d.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
               <Link to={`/debitos/${d.id}`}>
-                <Card className="flex items-center gap-3">
+                <Card className="flex items-start gap-3 active:scale-[0.99] transition-transform">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--surface-soft)]">
                     <DynamicIcon name={typeIcon[d.type] ?? "Receipt"} size={19} className="text-[var(--text-primary)]" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-bold text-[var(--text-primary)]">{d.description}</p>
-                    <p className="truncate text-xs text-[var(--text-secondary)]">
-                      {d.vehiclePlate ? `${d.vehiclePlate} · ` : ""}Vence {d.dueDate}
-                    </p>
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="line-clamp-2 text-sm font-bold leading-snug text-[var(--text-primary)]">{d.description}</p>
+                      <p className="shrink-0 font-display text-sm font-bold text-[var(--text-primary)]">
+                        {d.value > 0 ? currency(d.value) : "Grátis"}
+                      </p>
+                    </div>
+                    <div className="mt-1.5 flex items-center justify-between gap-2">
+                      <p className="truncate text-xs text-[var(--text-secondary)]">
+                        {d.vehiclePlate ? `${d.vehiclePlate} · ` : ""}
+                        {d.dueDate === "—" ? "Sem vencimento" : d.dueDate}
+                      </p>
+                      <StatusPill status={d.status} />
+                    </div>
                   </div>
-                  <div className="flex flex-col items-end gap-1">
-                    <p className="font-display text-sm font-bold text-[var(--text-primary)]">
-                      {d.value > 0 ? currency(d.value) : "Grátis"}
-                    </p>
-                    <StatusPill status={d.status} />
-                  </div>
-                  <ChevronRight size={16} className="text-[var(--text-secondary)]" />
                 </Card>
               </Link>
             </motion.div>

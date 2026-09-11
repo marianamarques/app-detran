@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import Screen from "../components/Screen";
 import { useApp } from "../context/AppContext";
-import { Card, StatusPill } from "../components/ui";
+import { Avatar, Card, StatusPill } from "../components/ui";
 
 export default function Perfil() {
   const { user, theme, toggleTheme, logout } = useApp();
@@ -28,8 +28,8 @@ export default function Perfil() {
   return (
     <Screen>
       <div className="mb-5 flex flex-col items-center pt-2 safe-top">
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 font-display text-2xl font-bold text-white shadow-lg shadow-brand-600/30">
-          {user.avatarInitials}
+        <div className="shadow-lg shadow-brand-600/20 rounded-full">
+          <Avatar src={user.avatarUrl} initials={user.avatarInitials} size={84} verified ring={false} />
         </div>
         <h1 className="mt-3 font-display text-lg font-bold text-[var(--text-primary)]">{user.name}</h1>
         <p className="text-xs text-[var(--text-secondary)]">CPF {user.cpf}</p>

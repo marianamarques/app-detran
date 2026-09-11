@@ -59,7 +59,7 @@ export default function RequestFlow({ config }: { config: RequestFlowConfig }) {
       <Screen>
         {vehicles.length > 0 && (
           <div className="mb-5">
-            <p className="mb-2 px-1 text-sm font-bold text-[var(--text-primary)]">Veículo</p>
+            <p className="mb-2 text-sm font-bold text-[var(--text-primary)]">Veículo</p>
             <div className="flex gap-2">
               {vehicles.map((v) => (
                 <button
@@ -77,7 +77,7 @@ export default function RequestFlow({ config }: { config: RequestFlowConfig }) {
           </div>
         )}
 
-        <p className="mb-2 px-1 text-sm font-bold text-[var(--text-primary)]">{config.prompt}</p>
+        <p className="mb-2 text-sm font-bold text-[var(--text-primary)]">{config.prompt}</p>
         <div className="space-y-2">
           {config.options.map((o) => (
             <button

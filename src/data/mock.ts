@@ -61,6 +61,7 @@ export interface UserProfile {
   phone: string;
   address: string;
   avatarInitials: string;
+  avatarUrl: string;
   cnh: {
     number: string;
     category: string;
@@ -81,6 +82,7 @@ export const mockUser: UserProfile = {
   phone: "(62) 99123-4567",
   address: "Rua T-30, 1200 — Setor Bueno, Goiânia - GO",
   avatarInitials: "MM",
+  avatarUrl: "https://i.pravatar.cc/300?img=47",
   cnh: {
     number: "01234567890",
     category: "AB",
@@ -249,10 +251,10 @@ export const mockNotifications: NotificationItem[] = [
 export const services = [
   { id: "cnh", title: "CNH Digital", desc: "Carteira, pontos e categorias", icon: "IdCard", to: "/cnh", color: "from-brand-500 to-brand-700" },
   { id: "veiculos", title: "Veículos", desc: "CRLV digital e documentos", icon: "Car", to: "/veiculos", color: "from-sky-500 to-sky-700" },
-  { id: "debitos", title: "Débitos e Multas", desc: "Consulte e pague on-line", icon: "Receipt", to: "/debitos", color: "from-amber-500 to-orange-600" },
-  { id: "agendamentos", title: "Agendamentos", desc: "Exames e serviços", icon: "CalendarDays", to: "/agendamentos", color: "from-violet-500 to-purple-700" },
-  { id: "bo", title: "Boletim de Ocorrência", desc: "Registrar sinistro ou furto", icon: "ShieldAlert", to: "/boletim", color: "from-rose-500 to-red-700" },
-  { id: "servicos", title: "Todos os serviços", desc: "Catálogo completo", icon: "LayoutGrid", to: "/servicos", color: "from-teal-500 to-emerald-700" },
+  { id: "debitos", title: "Débitos", desc: "Consulte e pague on-line", icon: "Receipt", to: "/debitos", color: "from-amber-500 to-orange-600" },
+  { id: "agendamentos", title: "Agenda", desc: "Exames e serviços", icon: "CalendarDays", to: "/agendamentos", color: "from-violet-500 to-purple-700" },
+  { id: "bo", title: "Ocorrência", desc: "Registrar sinistro ou furto", icon: "ShieldAlert", to: "/boletim", color: "from-rose-500 to-red-700" },
+  { id: "servicos", title: "Todos", desc: "Catálogo completo", icon: "LayoutGrid", to: "/servicos", color: "from-teal-500 to-emerald-700" },
 ];
 
 export const allServices = [

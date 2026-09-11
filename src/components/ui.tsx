@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { useState, type ButtonHTMLAttributes, type ReactNode } from "react";
 import * as Icons from "lucide-react";
 import clsx from "clsx";
 
@@ -42,11 +42,16 @@ const statusMap: Record<string, { label: string; classes: string; dot: string }>
   suspensa: { label: "Suspensa", classes: "bg-red-500/12 text-red-600 dark:text-red-400", dot: "bg-red-500" },
 };
 
-export function StatusPill({ status }: { status: string }) {
+export function StatusPill({ status, onDark = false }: { status: string; onDark?: boolean }) {
   const s = statusMap[status] ?? { label: status, classes: "bg-ink-400/15 text-ink-500", dot: "bg-ink-400" };
   return (
-    <span className={clsx("inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold", s.classes)}>
-      <span className={clsx("h-1.5 w-1.5 rounded-full", s.dot)} />
+    <span
+      className={clsx(
+        "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold shrink-0",
+        onDark ? "bg-white/20 text-white backdrop-blur-sm ring-1 ring-white/25" : s.classes
+      )}
+    >
+      <span className={clsx("h-1.5 w-1.5 rounded-full", onDark ? "bg-white" : s.dot)} />
       {s.label}
     </span>
   );
@@ -91,9 +96,57 @@ export function GhostButton({ children, className, ...props }: ButtonHTMLAttribu
 
 export function SectionTitle({ children, action }: { children: ReactNode; action?: ReactNode }) {
   return (
-    <div className="flex items-center justify-between px-1 mb-3">
+    <div className="flex items-center justify-between mb-3">
       <h2 className="font-display font-bold text-[15px] text-[var(--text-primary)]">{children}</h2>
       {action}
+    </div>
+  );
+}
+
+export function Avatar({
+  src,
+  initials,
+  size = 44,
+  verified = false,
+  ring = true,
+}: {
+  src?: string;
+  initials: string;
+  size?: number;
+  verified?: boolean;
+  ring?: boolean;
+}) {
+  const [errored, setErrored] = useState(false);
+  return (
+    <div className="relative shrink-0" style={{ width: size, height: size }}>
+      {src && !errored ? (
+        <img
+          src={src}
+          alt=""
+          onError={() => setErrored(true)}
+          onLoad={(e) => {
+            if (e.currentTarget.naturalWidth === 0) setErrored(true);
+          }}
+          className={clsx("h-full w-full rounded-full object-cover", ring && "ring-2 ring-white/30")}
+        />
+      ) : (
+        <div
+          className={clsx(
+            "flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 font-display font-bold text-white",
+            ring && "ring-2 ring-white/30"
+          )}
+        >
+          {initials}
+        </div>
+      )}
+      {verified && (
+        <span
+          className="absolute flex items-center justify-center rounded-full bg-brand-500 text-white ring-2 ring-[var(--surface)]"
+          style={{ width: size * 0.34, height: size * 0.34, right: -1, bottom: -1 }}
+        >
+          <Icons.BadgeCheck size={size * 0.26} strokeWidth={2.5} />
+        </span>
+      )}
     </div>
   );
 }

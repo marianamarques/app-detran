@@ -42,7 +42,7 @@ export default function Ajuda() {
           </a>
         </div>
 
-        <p className="mb-3 px-1 text-sm font-bold text-[var(--text-primary)]">Perguntas frequentes</p>
+        <p className="mb-3 text-sm font-bold text-[var(--text-primary)]">Perguntas frequentes</p>
         <div className="space-y-2">
           {faqs.map((f, i) => (
             <Card key={f.q} className="p-0 overflow-hidden">

@@ -34,7 +34,7 @@ export default function PhoneShell({ children }: { children: ReactNode }) {
       {/* Phone frame */}
       <div className="relative w-full h-[100dvh] lg:h-[900px] lg:w-[428px] lg:rounded-[3rem] lg:border-[10px] lg:border-ink-950 lg:shadow-2xl lg:shadow-black/40 bg-[var(--bg)] overflow-hidden shrink-0">
         <div className="hidden lg:block absolute top-0 left-1/2 -translate-x-1/2 z-50 h-7 w-36 bg-ink-950 rounded-b-2xl" />
-        <div className="relative h-full w-full overflow-hidden flex flex-col">{children}</div>
+        <div className="relative h-full w-full overflow-hidden flex flex-col lg:pt-7">{children}</div>
       </div>
     </div>
   );
