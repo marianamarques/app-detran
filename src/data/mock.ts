@@ -82,7 +82,7 @@ export const mockUser: UserProfile = {
   phone: "(62) 99123-4567",
   address: "Rua T-30, 1200 — Setor Bueno, Goiânia - GO",
   avatarInitials: "MM",
-  avatarUrl: "https://i.pravatar.cc/300?img=47",
+  avatarUrl: "https://i.pinimg.com/280x280_RS/85/41/a9/8541a9708bfb0b0f097894ada0c18ade.jpg",
   cnh: {
     number: "01234567890",
     category: "AB",

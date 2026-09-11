@@ -18,7 +18,7 @@ export default function TopBar({
   const navigate = useNavigate();
   return (
     <div
-      className={`safe-top shrink-0 px-4 pb-3 pt-4 flex items-center gap-3 ${
+      className={`safe-top shrink-0 px-4 pb-3 flex items-center gap-3 ${
         transparent ? "" : "border-b border-[var(--border-soft)]"
       }`}
     >

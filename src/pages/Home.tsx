@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <Screen padded={false} className="bg-[var(--bg)]">
-      <div className="relative overflow-hidden bg-gradient-to-br from-brand-600 to-brand-800 px-5 pb-8 pt-5 safe-top">
+      <div className="relative overflow-hidden bg-gradient-to-br from-brand-600 to-brand-800 px-5 pb-8 safe-top">
         <div className="absolute -top-10 -right-16 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
         <div className="absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-black/10 blur-3xl" />
         <div className="relative flex items-center justify-between">

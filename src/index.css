@@ -120,5 +120,12 @@ body {
   }
 }
 
-.safe-top { padding-top: env(safe-area-inset-top); }
-.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+/*
+ * These intentionally live outside any @layer so they always win over a
+ * conflicting Tailwind padding utility on the same element (unlayered CSS
+ * beats layered CSS regardless of source order) — the base amount below is
+ * the whole top/bottom padding for that side, not an addition to a pt or pb
+ * utility applied on the same element.
+ */
+.safe-top { padding-top: calc(1.25rem + env(safe-area-inset-top, 0px)); }
+.safe-bottom { padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); }

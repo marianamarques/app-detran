@@ -10,7 +10,7 @@ export default function Veiculos() {
 
   return (
     <Screen>
-      <div className="mb-4 flex items-center justify-between safe-top pt-1">
+      <div className="mb-4 flex items-center justify-between safe-top">
         <div>
           <h1 className="font-display text-xl font-extrabold text-[var(--text-primary)]">Meus veículos</h1>
           <p className="text-xs text-[var(--text-secondary)]">{vehicles.length} veículos vinculados ao seu CPF</p>

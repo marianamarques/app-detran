@@ -11,7 +11,7 @@ export default function Agendamentos() {
 
   return (
     <Screen>
-      <div className="mb-4 flex items-center justify-between safe-top pt-1">
+      <div className="mb-4 flex items-center justify-between safe-top">
         <div>
           <h1 className="font-display text-xl font-extrabold text-[var(--text-primary)]">Agendamentos</h1>
           <p className="text-xs text-[var(--text-secondary)]">Exames, renovações e serviços</p>

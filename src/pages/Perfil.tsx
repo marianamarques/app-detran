@@ -27,7 +27,7 @@ export default function Perfil() {
 
   return (
     <Screen>
-      <div className="mb-5 flex flex-col items-center pt-2 safe-top">
+      <div className="mb-5 flex flex-col items-center safe-top">
         <div className="shadow-lg shadow-brand-600/20 rounded-full">
           <Avatar src={user.avatarUrl} initials={user.avatarInitials} size={84} verified ring={false} />
         </div>

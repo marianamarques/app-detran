@@ -32,7 +32,7 @@ export default function Debitos() {
 
   return (
     <Screen>
-      <div className="mb-4 safe-top pt-1">
+      <div className="mb-4 safe-top">
         <h1 className="font-display text-xl font-extrabold text-[var(--text-primary)]">Débitos e multas</h1>
         <p className="text-xs text-[var(--text-secondary)]">Consulte, acompanhe e pague on-line</p>
       </div>

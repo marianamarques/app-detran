@@ -20,7 +20,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex h-full flex-col overflow-y-auto no-scrollbar bg-[var(--bg)] safe-top">
+    <div className="flex h-full flex-col overflow-y-auto no-scrollbar bg-[var(--bg)]">
       <div className="relative h-44 shrink-0 overflow-hidden bg-gradient-to-br from-brand-600 to-brand-800">
         <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
         <div className="absolute bottom-0 left-0 h-28 w-28 rounded-full bg-black/10 blur-2xl" />
